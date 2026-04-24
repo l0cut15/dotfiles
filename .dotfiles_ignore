@@ -1,0 +1,37 @@
+# Secrets & credentials
+.env
+.env.*
+.ssh/
+.config/rclone/
+
+# Claude Code
+.claude/
+.claude.json
+.claude.json.backup
+
+# Logs & cache
+.cache/
+.config/btop/btop.log
+.zsh_history
+.bash_history
+.viminfo
+.lesshst
+.node_repl_history
+.python_history
+.wget-hsts
+
+# Compiled/generated zsh
+.zcompdump*
+
+# Misc
+.sudo_as_admin_successful
+.cargo/
+.npm/
+.local/
+.docker/
+.gemini/
+.keras/
+.ansible/
+
+# The dotfiles repo itself
+.dotfiles/
