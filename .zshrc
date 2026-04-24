@@ -32,7 +32,11 @@ unset rc
 source ~/.env
 source <(fzf --zsh)
 
-#/opt/homebrew/bin/fastfetch
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    /opt/homebrew/bin/fastfetch
+else
+    /usr/bin/fastfetch
+fi
 
 mkdirc() {
     mkdir -p "$1" && cd "$1"
