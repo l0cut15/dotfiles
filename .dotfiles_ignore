@@ -20,6 +20,9 @@
 .python_history
 .wget-hsts
 
+# Machine-specific local overrides
+.zshrc.local
+
 # Compiled/generated zsh
 .zcompdump*
 
