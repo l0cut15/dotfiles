@@ -8,17 +8,17 @@ setopt APPEND_HISTORY        # append rather than overwrite history file
 
 
 
-export PATH="$HOME/.local/bin:$PATH"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    export PATH="/opt/homebrew/bin:$HOME/.local/bin:$PATH"
+    alias ls='ls -G'
+else
+    export PATH="$HOME/.local/bin:$PATH"
+    alias ls='ls --color=auto'
+fi
 
-alias ls='ls --color=auto'
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 eval "$(oh-my-posh init zsh --config catppuccin_mocha)"
-
-
-#if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-#  eval "$(oh-my-posh init zsh --config catppuccin_mocha)"
-#fi
 
 
 # Enable tab completion
