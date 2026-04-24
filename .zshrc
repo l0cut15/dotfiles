@@ -31,3 +31,9 @@ unset rc
 
 source ~/.env
 source <(fzf --zsh)
+
+#/opt/homebrew/bin/fastfetch
+
+mkdirc() {
+    mkdir -p "$1" && cd "$1"
+}
