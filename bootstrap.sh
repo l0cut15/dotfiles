@@ -118,7 +118,16 @@ elif [[ "$OS" == "Linux" ]]; then
     fi
 fi
 
-# ── Step 7: Set zsh as default shell ─────────────────────────────────────────
+# ── Step 7: Import SSH keys from GitHub ──────────────────────────────────────
+if command -v ssh-import-id-gh &>/dev/null; then
+    info "Importing SSH keys from GitHub..."
+    ssh-import-id-gh l0cut15
+    success "SSH keys imported"
+else
+    warn "ssh-import-id not found — skipping SSH key import"
+fi
+
+# ── Step 8: Set zsh as default shell ─────────────────────────────────────────
 if [[ "$(basename "$SHELL")" != "zsh" ]]; then
     ZSH_PATH="$(command -v zsh || true)"
     if [[ -n "$ZSH_PATH" ]]; then

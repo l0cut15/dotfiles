@@ -12,6 +12,7 @@ brew "btop"
 brew "htop"
 brew "fastfetch"
 brew "neovim"
+brew "ssh-import-id"
 
 # oh-my-posh installed via official script (bootstrap.sh) to keep ~/.local/bin consistent
 # cask "wezterm"
