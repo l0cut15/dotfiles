@@ -12,7 +12,6 @@ brew "btop"
 brew "htop"
 brew "fastfetch"
 brew "neovim"
-brew "zellij"
 
 # oh-my-posh installed via official script (bootstrap.sh) to keep ~/.local/bin consistent
 # cask "wezterm"
