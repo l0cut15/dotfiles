@@ -122,8 +122,4 @@ mkdirc() {
     mkdir -p "$1" && cd "$1"
 }
 
-export OTEL_EXPORTER_OTLP_PROTOCOL=http/json
-export OPENAI_API_KEY="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"
-GITHUB_TOKEN=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
-GITHUB_USER=l0cut15
-GITHUB_TOKENFG=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
+[[ -f ~/.env ]] && source ~/.env

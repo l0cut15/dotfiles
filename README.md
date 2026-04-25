@@ -4,69 +4,64 @@ Personal configuration files managed with a bare git repo.
 
 ---
 
-## Bootstrap a new machine
-
-### 1. Install prerequisites
-
-Ensure `git` and `gh` are installed, then authenticate:
+## Quick start
 
 ```zsh
-gh auth login
-gh auth setup-git
+curl -fsSL https://raw.githubusercontent.com/l0cut15/dotfiles/main/bootstrap.sh | bash
 ```
 
-### 2. Clone the bare repo
+That one command handles everything on macOS and Ubuntu/Debian Linux.
+
+---
+
+## What bootstrap.sh does
+
+1. Installs Xcode Command Line Tools (macOS) or updates apt (Linux)
+2. Installs Homebrew (macOS only)
+3. Installs `gh` and authenticates with GitHub
+4. Clones this repo as a bare git repo to `~/.dotfiles/`
+5. Backs up any conflicting existing files to `~/.dotfiles-backup/`
+6. Checks out all tracked dotfiles into `$HOME`
+7. Creates stub `~/.env` and `~/.zshrc.local` files
+8. Installs all tools (via Brewfile on macOS, apt + oh-my-posh script on Linux)
+9. Sets zsh as your default shell if not already
+
+Each step is idempotent — safe to re-run after a partial failure.
+
+---
+
+## Before you run bootstrap
+
+- Requires internet access
+- macOS: requires a browser for GitHub auth (an installer dialog for Xcode tools also opens)
+- **Headless Linux**: have a GitHub personal access token ready (`repo`, `gist`, `read:org` scopes). When the script pauses at the auth step, Ctrl-C and run:
 
 ```zsh
-git clone --bare https://github.com/l0cut15/dotfiles.git ~/.dotfiles
+gh auth login --with-token < my-token.txt
 ```
 
-### 3. Check out the files
+Then re-run bootstrap — it skips completed steps.
 
-If existing files conflict, back them up first:
+---
 
-```zsh
-mkdir -p ~/.dotfiles-backup
-git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout 2>&1 \
-  | grep "already exists" \
-  | awk '{print $1}' \
-  | xargs -I{} mv ~/{} ~/.dotfiles-backup/{}
-```
+## After bootstrap: machine-specific config
 
-Then check out:
+Two files are created but not tracked in git:
 
-```zsh
-git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout
-```
-
-### 4. Create local secrets and machine-specific config
-
-```zsh
-touch ~/.env         # add your API keys and tokens
-touch ~/.zshrc.local # add machine-specific shell config (not tracked)
-```
-
-`.env` variables needed:
-
+**`~/.env`** — secrets and API keys:
 ```
 OPENAI_API_KEY=
 GITHUB_TOKEN=
 GITHUB_USER=
 ```
 
-`~/.zshrc.local` examples (machine-specific):
-
+**`~/.zshrc.local`** — machine-specific shell config:
 ```zsh
-# macOS — nothing required by default
-# Linux (rpi5)
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
-[[ -f ~/.openclaw/completions/openclaw.zsh ]] && source ~/.openclaw/completions/openclaw.zsh
-```
+# Example: Linuxbrew on a machine where you installed it manually
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
 
-### 5. Reload your shell
-
-```zsh
-source ~/.zshrc
+# Example: project-specific tool version managers
+# eval "$(pyenv init - zsh)"
 ```
 
 ---
@@ -76,11 +71,11 @@ source ~/.zshrc
 The `dotfiles` alias wraps git for the bare repo:
 
 ```zsh
-dotfiles status                  # see what has changed
-dotfiles add ~/.zshrc            # stage a file
+dotfiles status                   # see what has changed
+dotfiles add ~/.zshrc             # stage a file
 dotfiles commit -m "update zshrc"
-dotfiles push                    # push to GitHub
-dotfiles pull                    # pull updates on another machine
+dotfiles push                     # push to GitHub
+dotfiles pull                     # pull updates on another machine
 ```
 
 ### Adding a new config file
@@ -110,3 +105,5 @@ source ~/.zshrc
 | `~/.config/btop/btop.conf` | `~/.claude/` |
 | `~/.config/htop/htoprc` | `~/.config/rclone/` |
 | `~/.config/zellij/config.kdl` | |
+| `~/Brewfile` | |
+| `~/bootstrap.sh` | |
