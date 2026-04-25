@@ -9,6 +9,12 @@
 .claude.json
 .claude.json.backup
 
+# Bash (not used — zsh only)
+.bashrc
+.bash_logout
+.bash_profile
+.profile
+
 # Logs & cache
 .cache/
 .config/btop/btop.log
