@@ -123,7 +123,8 @@ elif [[ "$OS" == "Linux" ]]; then
 
     if ! command -v oh-my-posh &>/dev/null; then
         info "Installing oh-my-posh..."
-        curl -s https://ohmyposh.dev/install.sh | sudo bash -s -- -d /usr/local/bin
+        mkdir -p "$HOME/.local/bin"
+        curl -s https://ohmyposh.dev/install.sh | bash -s
     fi
 fi
 
