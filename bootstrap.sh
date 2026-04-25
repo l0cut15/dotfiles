@@ -124,7 +124,7 @@ if [[ "$(basename "$SHELL")" != "zsh" ]]; then
     if [[ -n "$ZSH_PATH" ]]; then
         info "Setting zsh as default shell..."
         grep -qF "$ZSH_PATH" /etc/shells || echo "$ZSH_PATH" | sudo tee -a /etc/shells
-        chsh -s "$ZSH_PATH"
+        sudo chsh -s "$ZSH_PATH" "$USER"
         success "Default shell set to $ZSH_PATH — re-login to apply"
     else
         warn "zsh not found — install it and run: chsh -s \$(command -v zsh)"
