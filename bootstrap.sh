@@ -119,7 +119,7 @@ if [[ "$OS" == "Darwin" ]]; then
 elif [[ "$OS" == "Linux" ]]; then
     info "Installing Linux tools via apt..."
     sudo apt-get install -y --no-install-recommends \
-        zsh fzf btop htop fastfetch neovim jq bat
+        zsh fzf btop htop fastfetch neovim jq bat unzip
 
     if ! command -v oh-my-posh &>/dev/null; then
         info "Installing oh-my-posh..."
