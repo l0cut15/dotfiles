@@ -56,15 +56,7 @@ else
     die "Unsupported OS: $OS"
 fi
 
-# ── Step 2: GitHub auth ───────────────────────────────────────────────────────
-if ! gh auth status &>/dev/null; then
-    info "Authenticating with GitHub..."
-    warn "Headless machine? Ctrl-C and run: gh auth login --with-token < my-token.txt"
-    gh auth login
-fi
-success "GitHub authenticated as $(gh api user --jq .login)"
-
-# ── Step 3: Clone dotfiles bare repo ─────────────────────────────────────────
+# ── Step 2: Clone dotfiles bare repo ─────────────────────────────────────────
 if [[ -d "$DOTFILES_DIR" ]]; then
     warn "~/.dotfiles already exists — skipping clone"
 else

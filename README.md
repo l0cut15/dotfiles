@@ -18,7 +18,7 @@ That one command handles everything on macOS and Ubuntu/Debian Linux.
 
 1. Installs Xcode Command Line Tools (macOS) or updates apt (Linux)
 2. Installs Homebrew (macOS only)
-3. Installs `gh` and authenticates with GitHub
+3. Installs `gh`
 4. Clones this repo as a bare git repo to `~/.dotfiles/`
 5. Backs up any conflicting existing files to `~/.dotfiles-backup/`
 6. Checks out all tracked dotfiles into `$HOME`
@@ -32,15 +32,25 @@ Each step is idempotent — safe to re-run after a partial failure.
 
 ## Before you run bootstrap
 
-- Requires internet access
-- macOS: requires a browser for GitHub auth (an installer dialog for Xcode tools also opens)
-- **Headless Linux**: have a GitHub personal access token ready. When the script pauses at the auth step, Ctrl-C and run:
+Requires internet access only. The repo is public so no authentication is needed.
+
+macOS: an installer dialog opens for Xcode Command Line Tools.
+
+---
+
+## Pushing dotfiles from a new machine
+
+Bootstrap sets up `gh` but does not authenticate it — the repo is public so read access needs no credentials. If you want to push dotfiles changes from this machine, authenticate after bootstrap:
+
+```zsh
+gh auth login
+```
+
+On headless machines, use a token:
 
 ```zsh
 gh auth login --with-token < my-token.txt
 ```
-
-Then re-run bootstrap — it skips completed steps.
 
 ---
 
