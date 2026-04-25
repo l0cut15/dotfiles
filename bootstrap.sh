@@ -13,11 +13,10 @@ warn()    { printf '\033[1;33m[warn]\033[0m  %s\n' "$*"; }
 die()     { printf '\033[1;31m[fail]\033[0m  %s\n' "$*" >&2; exit 1; }
 
 OS="$(uname -s)"
-ARCH="$(uname -m)"
 
 # ── Step 1: Package manager baseline ─────────────────────────────────────────
 if [[ "$OS" == "Darwin" ]]; then
-    info "macOS detected ($ARCH)"
+    info "macOS detected"
 
     if ! xcode-select -p &>/dev/null; then
         info "Installing Xcode Command Line Tools..."
@@ -42,13 +41,13 @@ if [[ "$OS" == "Darwin" ]]; then
     fi
 
 elif [[ "$OS" == "Linux" ]]; then
-    info "Linux detected ($ARCH)"
+    info "Linux detected"
 
     if command -v apt-get &>/dev/null; then
         info "Installing prerequisites via apt..."
         sudo apt-get update -qq
         sudo apt-get install -y --no-install-recommends \
-            git curl gh build-essential procps file
+            git curl gh
     else
         die "Unsupported Linux package manager. Install git and gh manually, then re-run."
     fi
@@ -61,7 +60,7 @@ fi
 if ! gh auth status &>/dev/null; then
     info "Authenticating with GitHub..."
     warn "Headless machine? Ctrl-C and run: gh auth login --with-token < my-token.txt"
-    gh auth login --web -h github.com -s repo,gist,read:org
+    gh auth login
 fi
 success "GitHub authenticated as $(gh api user --jq .login)"
 

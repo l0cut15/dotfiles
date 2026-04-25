@@ -34,7 +34,7 @@ Each step is idempotent — safe to re-run after a partial failure.
 
 - Requires internet access
 - macOS: requires a browser for GitHub auth (an installer dialog for Xcode tools also opens)
-- **Headless Linux**: have a GitHub personal access token ready (`repo`, `gist`, `read:org` scopes). When the script pauses at the auth step, Ctrl-C and run:
+- **Headless Linux**: have a GitHub personal access token ready. When the script pauses at the auth step, Ctrl-C and run:
 
 ```zsh
 gh auth login --with-token < my-token.txt
@@ -57,11 +57,11 @@ GITHUB_USER=
 
 **`~/.zshrc.local`** — machine-specific shell config:
 ```zsh
-# Example: Linuxbrew on a machine where you installed it manually
-# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
-
 # Example: project-specific tool version managers
 # eval "$(pyenv init - zsh)"
+
+# Example: sourcing a custom tool's completions
+# [[ -f ~/.mycli/completions/mycli.zsh ]] && source ~/.mycli/completions/mycli.zsh
 ```
 
 ---
