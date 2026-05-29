@@ -10,7 +10,9 @@ setopt APPEND_HISTORY
 # ─── PATH ─────────────────────────────────────────────────────────────────────
 typeset -U path PATH
 
-[[ -d "$HOME/bin" ]] && path=("$HOME/bin" $path)
+[[ -d "$HOME/bin" ]]            && path=("$HOME/bin"            $path)
+[[ -d "$HOME/.local/bin" ]]    && path=("$HOME/.local/bin"    $path)
+[[ -d "$HOME/.npm-global/bin" ]] && path=("$HOME/.npm-global/bin" $path)
 
 # Homebrew — detect whichever prefix exists (macOS ARM, macOS Intel, Linux)
 if   [[ -x /opt/homebrew/bin/brew ]];              then eval "$(/opt/homebrew/bin/brew shellenv zsh)"
