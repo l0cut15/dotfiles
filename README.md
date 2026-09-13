@@ -112,8 +112,7 @@ source ~/.zshrc
 | `~/.zshrc` | `~/.zshrc.local` (machine-specific) |
 | `~/.gitconfig` | `~/.env` (secrets) |
 | `~/.mytheme.omp.json` | `~/.ssh/` |
-| `~/.config/btop/btop.conf` | `~/.claude/` |
-| `~/.config/htop/htoprc` | `~/.config/rclone/` |
-| `~/.config/zellij/config.kdl` | |
-| `~/Brewfile` | |
-| `~/bootstrap.sh` | |
+| `~/.config/htop/htoprc` | `~/.claude/` |
+| `~/.config/zellij/config.kdl` | `~/.config/rclone/` |
+| `~/bootstrap.sh` | `~/.config/btop/btop.conf` (machine-specific) |
+| | `~/Brewfile` (machine-specific) |

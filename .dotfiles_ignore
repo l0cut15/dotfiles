@@ -42,5 +42,9 @@
 .keras/
 .ansible/
 
+# Machine-specific, not synced
+.config/btop/btop.conf
+Brewfile
+
 # The dotfiles repo itself
 .dotfiles/
