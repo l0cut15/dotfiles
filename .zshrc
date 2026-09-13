@@ -43,7 +43,7 @@ mkdirc() {
 }
 
 # ─── Prompt ───────────────────────────────────────────────────────────────────
-command -v oh-my-posh &>/dev/null && eval "$(oh-my-posh init zsh --config catppuccin_mocha)"
+command -v oh-my-posh &>/dev/null && eval "$(oh-my-posh init zsh --config ~/.mytheme.omp.json)"
 
 # ─── Completion ───────────────────────────────────────────────────────────────
 autoload -Uz compinit && compinit
